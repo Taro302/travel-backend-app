@@ -12,6 +12,14 @@ const User = db.define("users", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  firstLastName: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  secondLastName: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   email: {
     type: DataTypes.STRING,
     allowNull: false,

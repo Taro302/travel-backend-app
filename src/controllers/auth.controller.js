@@ -7,7 +7,7 @@ const { ref, uploadBytes, getDownloadURL } = require('firebase/storage');
 const { storage } = require('../utils/firebase');
 
 exports.signUp = catchAsync(async (req, res, next) => {
-  const { name, email, password } = req.body;
+  const { name, firstLastName, secondLastName, email, password } = req.body;
 
   let imgUrl; // imgUrl estará indefinido al principio
 
@@ -23,6 +23,8 @@ exports.signUp = catchAsync(async (req, res, next) => {
   const user = await User.create({
     name: name.toLowerCase(),
     email: email.toLowerCase(),
+    firstLastName: firstLastName.toLowerCase(),
+    secondLastName: secondLastName.toLowerCase(),
     imgUrl: imgUrl,
     password: encryptedPassword,
   });
@@ -36,6 +38,8 @@ exports.signUp = catchAsync(async (req, res, next) => {
     user: {
       id: user.id,
       name: user.name,
+      firstLastName: user.firstLastName,
+      secondLastName: user.secondLastName,
       email: user.email,
       imgUrl: user.imgUrl,
     },
