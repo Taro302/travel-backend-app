@@ -1,4 +1,5 @@
 const { Sequelize } = require("sequelize");
+const { Pool } = require("pg");
 
 let db;
 
@@ -6,6 +7,10 @@ if (process.env.NODE_ENV === 'production') {
   db = new Sequelize(process.env.DATABASE_URL, {
     dialect: 'postgres',
     logging: false,
+    ssl: {
+      require: true, // require SSL connections
+      rejectUnauthorized: false, // optional, but recommended to avoid errors
+    },
   });
 } else {
   db = new Sequelize({
@@ -15,6 +20,12 @@ if (process.env.NODE_ENV === 'production') {
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
       logging: false,
+      dialectOptions: {
+        ssl: {
+          require: true, // require SSL connections
+          rejectUnauthorized: false, // optional, but recommended to avoid errors
+        },
+      },
   })
 
 }

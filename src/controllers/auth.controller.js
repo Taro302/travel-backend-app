@@ -75,11 +75,10 @@ exports.login = catchAsync(async (req, res, next) => {
     user: {
       id: user.id,
       name: user.name,
+      firstLastName: user.firstLastName,
+      secondLastName: user.secondLastName,
       email: user.email,
       imgUrl: url,
-      role: user.role
-      // description: user.description,
-      // profileImgUrl: user.profileImgUrl,
     },
   });
 });
