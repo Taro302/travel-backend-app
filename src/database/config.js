@@ -3,7 +3,7 @@ const { Pool } = require("pg");
 
 let db;
 
-if (process.env.NODE_ENV === 'producstion') {
+if (process.env.NODE_ENV === 'production') {
   db = new Sequelize(process.env.DATABASE_URL, {
     dialect: 'postgres',
     logging: false,

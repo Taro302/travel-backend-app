@@ -18,6 +18,9 @@ const globalErrorHandler = require('./controllers/error.controller');
 const usersRouter = require('./routes/users.routes');
 const departamentRouter = require('./routes/departament.routes');
 const citiesRouter = require('./routes/cities.routes');
+const turistPlaceRouter = require('./routes/turistPlace.routes');
+const typicalMealRouter = require('./routes/typicalMeal.routes');
+const celebrationRouter = require('./routes/celebration.routes');
 
 const app = express();
 const limiter = rateLimit({
@@ -49,6 +52,9 @@ app.use('/api/v1', limiter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/departaments', departamentRouter);
 app.use('/api/v1/cities', citiesRouter);
+app.use('/api/v1/turistPlace', turistPlaceRouter);
+app.use('/api/v1/celebration', celebrationRouter);
+app.use('/api/v1/typicalMeal', typicalMealRouter);
 
 app.all('*', (req, res, next) => 
     next( new AppError(`Can't find ${req.originalUrl} on this server!`, 404)

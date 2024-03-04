@@ -4,21 +4,21 @@ const upload = require('../utils/multer');
 const router = express.Router();
 
 //Controller functions
-const cityController = require('./../controllers/city.controller')
+const typicalMealController = require('./../controllers/typicalMeal.controller');
 
 //Middleware functions
 
 router
   .route('/')
   .get(
-    cityController.FindAllCity
+    typicalMealController.FindAllTypicalMeals
   )
 
 router
   .route('/:id')
   .post(
     upload.single('imgURL'),
-    cityController.CreateCity
+    typicalMealController.CreateTypicalMeal
   )
 
 module.exports = router;
