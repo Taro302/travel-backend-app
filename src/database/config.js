@@ -19,13 +19,13 @@ if (process.env.NODE_ENV === 'production') {
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
-      logging: false,
-      dialectOptions: {
-        ssl: {
-          require: true, // require SSL connections
-          rejectUnauthorized: false, // optional, but recommended to avoid errors
-        },
-      },
+      // logging: false,
+      // dialectOptions: {
+      //   ssl: {
+      //     require: true, // require SSL connections
+      //     rejectUnauthorized: false, // optional, but recommended to avoid errors
+      //   },
+      // },
   })
 
 }

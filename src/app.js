@@ -16,6 +16,8 @@ const globalErrorHandler = require('./controllers/error.controller');
 
 //Routes functions
 const usersRouter = require('./routes/users.routes');
+const departamentRouter = require('./routes/departament.routes');
+const citiesRouter = require('./routes/cities.routes');
 
 const app = express();
 const limiter = rateLimit({
@@ -45,6 +47,8 @@ app.use('/api/v1', limiter);
 
 //Routes 
 app.use('/api/v1/users', usersRouter);
+app.use('/api/v1/departaments', departamentRouter);
+app.use('/api/v1/cities', citiesRouter);
 
 app.all('*', (req, res, next) => 
     next( new AppError(`Can't find ${req.originalUrl} on this server!`, 404)

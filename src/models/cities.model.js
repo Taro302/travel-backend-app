@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const { db } = require("../database/config");
 
-const Place = db.define("places", {
+const City = db.define("City", {
   id: {
     primaryKey: true,
     allowNull: false,
@@ -14,8 +14,16 @@ const Place = db.define("places", {
   },
   imgURL: {
     type: DataTypes.STRING,
-    allowNull: true,
+    allowNull: false,
+  },
+  description: {
+    type : DataTypes.STRING,
+    allowNull : false,
+  },
+  idDepartament: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
   }
 })
 
-module.exports = Place;
+module.exports = City;
