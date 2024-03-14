@@ -13,7 +13,7 @@ const Departament = db.define("departament", {
     allowNull: false,
   },
   info: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
   imgURL: {
