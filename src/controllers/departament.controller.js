@@ -50,3 +50,16 @@ exports.FindAllDepartament = catchAsync(async (req, res, next) => {
     data: departamentsWithImgUrl
   })
 });
+
+exports.findOneDepartament = catchAsync(async (req, res, next) => {
+  const { departament, city } = req;
+
+  res.status(200).json({
+    status: "success",
+    name: departament.name,
+    info: departament.info,
+    imgURL: departament.imgURL, 
+    city
+  })
+  
+});

@@ -7,6 +7,7 @@ const router = express.Router();
 const departamentController = require('../controllers/departament.controller')
 
 //Middleware functions
+const departamentMiddleware = require('./../middlewares/departament.middleware')
 
 router
   .route('/')
@@ -18,5 +19,11 @@ router
     departamentController.FindAllDepartament
   )
 
+router
+  .route('/:id')
+  .get(
+    departamentMiddleware.validDepartament,
+    departamentController.findOneDepartament
+  )
 
 module.exports = router;
