@@ -25,5 +25,9 @@ router
     departamentMiddleware.validDepartament,
     departamentController.findOneDepartament
   )
+  .patch(
+    departamentMiddleware.validDepartament,
+    departamentController.updateDepartament
+  )
 
 module.exports = router;

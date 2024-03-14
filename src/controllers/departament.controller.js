@@ -54,12 +54,57 @@ exports.FindAllDepartament = catchAsync(async (req, res, next) => {
 exports.findOneDepartament = catchAsync(async (req, res, next) => {
   const { departament, city } = req;
 
-  res.status(200).json({
+  const departamentImgRef = ref(storage, departament.imgURL);
+  const departamentImgURL = await getDownloadURL(departamentImgRef);
+
+  const cityWithImgURLs = await Promise.all(
+    city.map(async (cityItem) => {
+      const cityImgRef = ref(storage, cityItem.imgURL);
+      const cityImgURL = await getDownloadURL(cityImgRef);
+
+      return {
+        id: cityItem.id,
+        name: cityItem.name,
+        imgURL: cityImgURL,
+        description: cityItem.description,
+        idDepartament: cityItem.idDepartament,
+        createdAt: cityItem.createdAt,
+        updatedAt: cityItem.updatedAt
+      };
+    })
+  );
+
+  const response = {
     status: "success",
     name: departament.name,
     info: departament.info,
-    imgURL: departament.imgURL, 
-    city
-  })
+    imgURL: departamentImgURL,
+    city: cityWithImgURLs
+  };
+
+  res.status(200).json(response);
+});
+
+exports.updateDepartament = catchAsync(async (req, res, next) => {
+  const { departament } = req;
+  const { name, info } = req.body; 
   
+  if (req.file) {
+    const oldImgRef = ref(storage, departament.imgURL);
+    await deleteObject(oldImgRef);
+
+    const newImgRef = ref(storage, `departaments/${Date.now()}-${req.file.originalname}`);
+    const newImgUploaded = await uploadBytes(newImgRef, req.file.buffer);
+
+    await departament.update({
+      name,
+      info,
+      imgURL: newImgUploaded
+    });
+  } 
+
+  res.status(200).json({
+    status: 'success',
+    departament
+  });
 });
