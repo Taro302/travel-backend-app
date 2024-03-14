@@ -17,8 +17,8 @@ const TuristsPlaces = db.define("places", {
     allowNull: false,
   },
   description: {
-    type : DataTypes.STRING,
-    allowNull : false,
+    type: DataTypes.TEXT,
+    allowNull: false,
   },
   idCity: {
     type: DataTypes.INTEGER,

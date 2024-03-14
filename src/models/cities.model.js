@@ -17,8 +17,8 @@ const City = db.define("City", {
     allowNull: false,
   },
   description: {
-    type : DataTypes.STRING,
-    allowNull : false,
+    type: DataTypes.TEXT,
+    allowNull: false,
   },
   idDepartament: {
     type: DataTypes.INTEGER,

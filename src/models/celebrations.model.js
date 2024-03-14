@@ -17,8 +17,8 @@ const Celebration = db.define("celebrations", {
     allowNull: false,
   },
   description: {
-    type : DataTypes.STRING,
-    allowNull : false,
+    type: DataTypes.TEXT,
+    allowNull: false,
   },
   imgURL:{
     type: DataTypes.STRING,
