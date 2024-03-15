@@ -4,7 +4,7 @@ const upload = require('../utils/multer');
 const router = express.Router();
 
 //Controller functions
-const departamentController = require('../controllers/departament.controller')
+const UserDepartamentController = require('./../controllers/userDepartament.controller')
 
 //Middleware functions
 const departamentMiddleware = require('./../middlewares/departament.middleware')
@@ -13,21 +13,18 @@ router
   .route('/')
   .post(
     upload.single('imgURL'),
-    departamentController.CreateDepartament
+    UserDepartamentController.CreateUserDepartament
   )
   .get(
-    departamentController.FindAllDepartament
+    UserDepartamentController.FindAllUserDepartament  
   )
 
 router
   .route('/:id')
-  .get(
-    departamentMiddleware.validDepartament,
-    departamentController.findOneDepartament
-  )
   .patch(
     upload.single('imgURL'),
-    departamentController.updateDepartament
+    UserDepartamentController.UpdatedUserDepartament
   )
+
 
 module.exports = router;

@@ -1,7 +1,7 @@
 const Departament = require("../models/departament.model");
 const catchAsync = require("../utils/catchAsync");
 
-const { ref, uploadBytes, getDownloadURL } = require('firebase/storage');
+const { ref, uploadBytes, getDownloadURL, deleteObject } = require('firebase/storage');
 const { storage } = require('../utils/firebase');
 
 exports.CreateDepartament = catchAsync(async (req, res, next) => {
@@ -86,9 +86,15 @@ exports.findOneDepartament = catchAsync(async (req, res, next) => {
 });
 
 exports.updateDepartament = catchAsync(async (req, res, next) => {
-  const { departament } = req;
+  const { id } = req.params;
   const { name, info } = req.body; 
-  
+
+  const departament = await Departament.findOne({
+    where:{
+      id
+    }
+  });
+
   if (req.file) {
     const oldImgRef = ref(storage, departament.imgURL);
     await deleteObject(oldImgRef);
@@ -96,18 +102,14 @@ exports.updateDepartament = catchAsync(async (req, res, next) => {
     const newImgRef = ref(storage, `departaments/${Date.now()}-${req.file.originalname}`);
     const newImgUploaded = await uploadBytes(newImgRef, req.file.buffer);
 
+    const imgURL = newImgUploaded.metadata.fullPath;
+
     await departament.update({
       name,
       info,
-      imgURL: newImgUploaded
-    });
-  } else {
-    await departament.update({
-      name,
-      info
+      imgURL    
     });
   }
-
   res.status(200).json({
     status: 'success',
     departament
