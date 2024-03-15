@@ -20,7 +20,7 @@ exports.CreateTuristPlace = catchAsync(async (req, res, next) => {
     name,
     description,
     imgURL,
-    idCity: id
+    idDepartament: id
   })
 
   res.status(200).json({
@@ -42,7 +42,7 @@ exports.FindAllTuristPlace = catchAsync(async (req, res, next) => {
         name: turistPlace.name,
         description: turistPlace.description,
         imgURL: url,
-        idCity: turistPlace.idCity
+        idDepartament: turistPlace.idCity
       }
     })
     );
