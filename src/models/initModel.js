@@ -8,14 +8,14 @@ const initModel = () => {
   Departament.hasMany(City, {foreignKey: 'idDepartament'});
   City.belongsTo(Departament, {foreignKey: 'idDepartament'});
 
-  City.hasMany(TuristsPlaces, {foreignKey: 'idCity'});
-  TuristsPlaces.belongsTo(TuristsPlaces, {foreignKey: 'idCity'});
+  Departament.hasMany(TuristsPlaces, {foreignKey: 'idDepartament'});
+  TuristsPlaces.belongsTo(Departament, {foreignKey: 'idDepartament'});
 
-  City.hasMany(Celebration, {foreignKey: 'idCity'});
-  Celebration.belongsTo(City, {foreignKey: 'idCity'});
+  Departament.hasMany(Celebration, {foreignKey: 'idDepartament'});
+  Celebration.belongsTo(Departament, {foreignKey: 'idDepartament'});
 
-  City.hasMany(TypicalMeals, {foreignKey: 'idCity'});
-  TypicalMeals.belongsTo(City, {foreignKey: 'idCity'});
+  Departament.hasMany(TypicalMeals, {foreignKey: 'idDepartament'});
+  TypicalMeals.belongsTo(Departament, {foreignKey: 'idDepartament'});
 };
 
 module.exports = initModel; 

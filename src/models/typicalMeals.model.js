@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const { db } = require("../database/config");
 
-const TypicalMeals = db.define("celebrations", {
+const TypicalMeals = db.define("typicalMealss", {
   id: {
     type : DataTypes.INTEGER,
     primaryKey : true,
@@ -20,7 +20,7 @@ const TypicalMeals = db.define("celebrations", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  idCity: {
+  idDepartament: {
     type: DataTypes.INTEGER,
     allowNull: false,
   }

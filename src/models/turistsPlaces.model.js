@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const { db } = require("../database/config");
 
-const TuristsPlaces = db.define("places", {
+const TuristsPlaces = db.define("placess", {
   id: {
     primaryKey: true,
     allowNull: false,
@@ -20,7 +20,7 @@ const TuristsPlaces = db.define("places", {
     type: DataTypes.TEXT,
     allowNull: false,
   },
-  idCity: {
+  idDepartament: {
     type: DataTypes.INTEGER,
     allowNull: false,
   }

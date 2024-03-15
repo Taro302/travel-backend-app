@@ -8,17 +8,15 @@ const typicalMealController = require('./../controllers/typicalMeal.controller')
 
 //Middleware functions
 
-router
-  .route('/')
-  .get(
-    typicalMealController.FindAllTypicalMeals
-  )
 
 router
   .route('/:id')
   .post(
     upload.single('imgURL'),
     typicalMealController.CreateTypicalMeal
+  )
+  .get(
+    typicalMealController.FindAllTypicalMeals
   )
 
 module.exports = router;
