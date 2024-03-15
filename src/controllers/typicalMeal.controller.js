@@ -20,7 +20,7 @@ exports.CreateTypicalMeal = catchAsync(async (req, res, next) => {
     name,
     description,
     imgURL,
-    idCity: id
+    idDepartament: id
   })
 
   res.status(200).json({

@@ -101,7 +101,12 @@ exports.updateDepartament = catchAsync(async (req, res, next) => {
       info,
       imgURL: newImgUploaded
     });
-  } 
+  } else {
+    await departament.update({
+      name,
+      info
+    });
+  }
 
   res.status(200).json({
     status: 'success',
